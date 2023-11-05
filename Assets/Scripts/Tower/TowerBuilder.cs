@@ -16,10 +16,14 @@ public class TowerBuilder : MonoBehaviour
     
     private float _spawnPositionYMultiplier = 1.5f;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private float _distanceBetweenTowers;
 =======
     private float _distanñeBetweenTowers;
 >>>>>>> origin/main
+=======
+    private float _distanñeBetweenTowers;
+>>>>>>> c8d3cfaff26894d572f8746a332a0285648a7b2e
 
     private void Awake()
     {
@@ -51,10 +55,14 @@ public class TowerBuilder : MonoBehaviour
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             _spawnPosition = new Vector3(_spawnPosition.x + _distanceBetweenTowers, 0, _spawnPosition.z);
 =======
             _spawnPosition = new Vector3(_spawnPosition.x + _distanñeBetweenTowers, 0, _spawnPosition.z);
 >>>>>>> origin/main
+=======
+            _spawnPosition = new Vector3(_spawnPosition.x + _distanñeBetweenTowers, 0, _spawnPosition.z);
+>>>>>>> c8d3cfaff26894d572f8746a332a0285648a7b2e
         }
         
         return humans;
@@ -73,11 +81,16 @@ public class TowerBuilder : MonoBehaviour
         _finishPathPosition = _pathCreator.path.GetDirectionAtDistance(1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         _distanceBetweenTowers = (_finishPathPosition.x - _startPathPosition.x) / _towersOnRoad;
         _spawnPosition = _pathCreator.path.GetPointAtDistance(_distanceBetweenTowers);
 =======
         _distanñeBetweenTowers = (_finishPathPosition.x - _startPathPosition.x) / _towersOnRoad;
         _spawnPosition = _pathCreator.path.GetPointAtDistance(_distanñeBetweenTowers);
 >>>>>>> origin/main
+=======
+        _distanñeBetweenTowers = (_finishPathPosition.x - _startPathPosition.x) / _towersOnRoad;
+        _spawnPosition = _pathCreator.path.GetPointAtDistance(_distanñeBetweenTowers);
+>>>>>>> c8d3cfaff26894d572f8746a332a0285648a7b2e
     }
 }
