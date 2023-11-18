@@ -5,13 +5,15 @@ using PathCreation;
 public class TowerBuilder : MonoBehaviour
 {
     [SerializeField] private Human[] _differentHumans;
+    [SerializeField] private int _minHumansInTower;
+    [SerializeField] private int _maxHumansInTower;
 
     private Vector3 _spawnPosition;
     private int _humansInTower;
 
     private void Awake() //get previous values
     {
-        _humansInTower = Random.Range(1, 10);
+        _humansInTower = Random.Range(_minHumansInTower, _maxHumansInTower);
 
         _spawnPosition = transform.position;
     }

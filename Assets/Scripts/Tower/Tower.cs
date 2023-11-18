@@ -12,5 +12,23 @@ public class Tower : MonoBehaviour
         _towerBuilder = GetComponent<TowerBuilder>();
 
         _humans = _towerBuilder.Build();
+
+        foreach (Human human in _humans)
+        {
+            human.HumansHit += OnHumansHit;
+        }
+    }
+
+    private void OnHumansHit(Human hittedHuman)
+    {
+        _humans.Remove(hittedHuman);
+        Destroy(hittedHuman.gameObject);
+        
+        hittedHuman.HumansHit -= OnHumansHit;
+
+        if (_humans.Count == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

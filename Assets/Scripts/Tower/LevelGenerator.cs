@@ -30,9 +30,4 @@ public class LevelGenerator : MonoBehaviour
             Instantiate(_templateTower, spawnPosition, Quaternion.identity);
         }
     }
-
-    private void SetPreviousValues()
-    {
-        //add
-    }
 }

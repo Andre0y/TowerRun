@@ -49,6 +49,8 @@ MonoBehaviour:
   - {fileID: -7671614191412877136, guid: 078ce8b1014e99048b85f0ea915d0cf1, type: 3}
   - {fileID: 889452941957371366, guid: 7dc5cd210e86c214bb92373785e9a746, type: 3}
   - {fileID: 1921743887635270967, guid: 387df818398a7af4e9dad0e219907aef, type: 3}
+  _minHumansInTower: 1
+  _maxHumansInTower: 6
 --- !u!114 &685811419524811502
 MonoBehaviour:
   m_ObjectHideFlags: 0
