@@ -3,36 +3,24 @@ using UnityEngine;
 
 public class PlayerTower : MonoBehaviour
 {
-    [SerializeField] private Human _firstHuman;
+    [SerializeField] private Human[] _templateHumans;
     
-    private int _collisionsCount;
     private Transform _spawnPosition;
     private List<Human> _humansInPlayerTower = new List<Human>();
     
     private void Start()
     {
-        _humansInPlayerTower.Add(_firstHuman);
-
-        _spawnPosition = _firstHuman.FixationPoint;
+        SpawnFirstHuman(); 
     }
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        _collisionsCount = 0;
-    }
-
-    private void OnCollisionEnter(Collision collison)
-    {
-        if (collison.gameObject.TryGetComponent(out Human human))
+        if (other.TryGetComponent(out Human human))
         {
-            _collisionsCount += 1;
+            Human newHuman = SpawnNewHuman(human);
+            _humansInPlayerTower.Add(newHuman);
             
-            if(_collisionsCount == 1 && _collisionsCount < 2)
-            {
-                Human newHuman = SpawnNewHuman(human);
-                _humansInPlayerTower.Add(newHuman);
-                human.HumansHit?.Invoke(human);
-            }
+            human.HumansHit?.Invoke(human);
         }
     }
 
@@ -42,5 +30,13 @@ public class PlayerTower : MonoBehaviour
         _spawnPosition.position = newHuman.FixationPoint.position;
         
         return newHuman;
+    }
+
+    private void SpawnFirstHuman()
+    {
+        Human templateHuman = _templateHumans[Random.Range(0, _templateHumans.Length)];
+        Human firstHuman = Instantiate(templateHuman, transform.position, Quaternion.identity, transform);
+
+        _spawnPosition = firstHuman.FixationPoint;
     }
 }

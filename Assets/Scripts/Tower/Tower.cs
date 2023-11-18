@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour
     private List<Human> _humans;
     private TowerBuilder _towerBuilder;
     
-    private void Start() //directly build road towers
+    private void Start() 
     {
         _towerBuilder = GetComponent<TowerBuilder>();
 
