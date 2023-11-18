@@ -5,7 +5,6 @@ public class PlayerTower : MonoBehaviour
 {
     [SerializeField] private Human[] _templatesHumans;
     
-    private int _collisionsCount;
     private Transform _spawnPosition;
     private List<Human> _humansInPlayerTower = new List<Human>();
     
@@ -14,22 +13,14 @@ public class PlayerTower : MonoBehaviour
         SpawnFirstHuman();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.TryGetComponent(out Human human))
+        if (other.TryGetComponent(out Human human) && other.transform.position.y >= human.transform.localScale.y)
         {
-            _collisionsCount++;
+            Human newHuman = SpawnNewHuman(human);
+            _humansInPlayerTower.Add(newHuman);
             
-            if (_collisionsCount == 1)
-            {
-                Human newHuman = SpawnNewHuman(human);
-                _humansInPlayerTower.Add(newHuman);
-                human.HumansHit?.Invoke(human);
-            }
-            else
-            {
-                _collisionsCount = 0;
-            }
+            human.HumansHit?.Invoke(human);
         }
     }
 
