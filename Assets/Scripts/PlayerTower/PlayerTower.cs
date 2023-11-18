@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerTower : MonoBehaviour
 {
-    [SerializeField] private Human _firstHuman;
+    [SerializeField] private Human[] _templatesHumans;
     
     private int _collisionsCount;
     private Transform _spawnPosition;
@@ -11,36 +11,42 @@ public class PlayerTower : MonoBehaviour
     
     private void Start()
     {
-        _humansInPlayerTower.Add(_firstHuman);
-
-        _spawnPosition = _firstHuman.FixationPoint;
+        SpawnFirstHuman();
     }
 
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        _collisionsCount = 0;
-    }
-
-    private void OnCollisionEnter(Collision collison)
-    {
-        if (collison.gameObject.TryGetComponent(out Human human))
+        if (collision.gameObject.TryGetComponent(out Human human))
         {
-            _collisionsCount += 1;
+            _collisionsCount++;
             
-            if(_collisionsCount == 1 && _collisionsCount < 2)
+            if (_collisionsCount == 1)
             {
                 Human newHuman = SpawnNewHuman(human);
                 _humansInPlayerTower.Add(newHuman);
                 human.HumansHit?.Invoke(human);
+            }
+            else
+            {
+                _collisionsCount = 0;
             }
         }
     }
 
     private Human SpawnNewHuman(Human human)
     {
-        Human newHuman =  Instantiate(human, _spawnPosition.position, Quaternion.Euler(0,90,0), transform);
+        Human newHuman = Instantiate(human, _spawnPosition.position, Quaternion.Euler(0,90,0), transform);
         _spawnPosition.position = newHuman.FixationPoint.position;
         
         return newHuman;
+    }
+
+    private void SpawnFirstHuman()
+    {
+        Human templateHuman = _templatesHumans[Random.Range(1, _templatesHumans.Length)];
+        Human firstHuman = Instantiate(templateHuman, transform.position, Quaternion.identity, transform);
+        _humansInPlayerTower.Add(firstHuman);
+
+        _spawnPosition = firstHuman.FixationPoint;
     }
 }
