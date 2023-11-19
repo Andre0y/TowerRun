@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerTower : MonoBehaviour
@@ -13,9 +14,9 @@ public class PlayerTower : MonoBehaviour
         SpawnFirstHuman();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.TryGetComponent(out Human human) && other.transform.position.y >= human.transform.localScale.y)
+        if (collision.gameObject.TryGetComponent(out Human human) && transform.position.y > human.transform.localScale.y)
         {
             Human newHuman = SpawnNewHuman(human);
             _humansInPlayerTower.Add(newHuman);
@@ -27,7 +28,7 @@ public class PlayerTower : MonoBehaviour
     private Human SpawnNewHuman(Human human)
     {
         Human newHuman = Instantiate(human, _spawnPosition.position, Quaternion.Euler(0,90,0), transform);
-        _spawnPosition.position = newHuman.FixationPoint.position;
+        _spawnPosition = newHuman.FixationPoint;
         
         return newHuman;
     }
