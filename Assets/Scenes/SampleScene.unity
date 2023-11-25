@@ -841,7 +841,6 @@ GameObject:
   - component: {fileID: 1486525920}
   - component: {fileID: 1486525923}
   - component: {fileID: 1486525924}
-  - component: {fileID: 1486525925}
   - component: {fileID: 1486525922}
   m_Layer: 0
   m_Name: PlayerTower
@@ -905,8 +904,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5197914, y: 0.26178992, z: 0.48309815}
-  m_Center: {x: 0.35262284, y: 0.14089495, z: 0.31640774}
+  m_Size: {x: 0.3624556, y: 0.05, z: 0.27442932}
+  m_Center: {x: 0, y: 0.035, z: 0}
 --- !u!114 &1486525923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,19 +936,6 @@ MonoBehaviour:
   - {fileID: -7671614191412877136, guid: 078ce8b1014e99048b85f0ea915d0cf1, type: 3}
   - {fileID: 889452941957371366, guid: 7dc5cd210e86c214bb92373785e9a746, type: 3}
   - {fileID: 1921743887635270967, guid: 387df818398a7af4e9dad0e219907aef, type: 3}
-  _collectorCollider: {fileID: 1486525922}
---- !u!114 &1486525925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486525918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce6278d1d9b40948b2923cd52f2c399, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1692210638
 GameObject:
   m_ObjectHideFlags: 0
