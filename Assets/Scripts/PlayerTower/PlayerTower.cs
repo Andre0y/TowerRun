@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerTower : MonoBehaviour
 {
     [SerializeField] private Human[] _templatesHumans;
+    [SerializeField] private PlayerFollower _playerFollower;
 
     private List<Human> _humansInPlayerTower = new List<Human>();
     
@@ -35,6 +36,8 @@ public class PlayerTower : MonoBehaviour
     {
         for (int i = 0; i < collectedHumans.Count; i++)
         {
+            _playerFollower.AddDistance(collectedHumans[i]);
+            
             _humansInPlayerTower.Insert(i, collectedHumans[i]);
             _humansInPlayerTower[i].transform.parent = transform;
         }
