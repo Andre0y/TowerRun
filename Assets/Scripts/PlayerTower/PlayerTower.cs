@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerTower : MonoBehaviour
 {
     [SerializeField] private Human[] _templatesHumans;
-    [SerializeField] private BoxCollider _collectorCollider;
 
     private List<Human> _humansInPlayerTower = new List<Human>();
     
@@ -15,7 +14,7 @@ public class PlayerTower : MonoBehaviour
 
     private void SpawnFirstHuman()
     {
-        Human templateHuman = _templatesHumans[Random.Range(1, _templatesHumans.Length)];
+        Human templateHuman = _templatesHumans[Random.Range(0, _templatesHumans.Length)];
         Human firstHuman = Instantiate(templateHuman, transform.position, Quaternion.identity, transform);
         _humansInPlayerTower.Add(firstHuman);
     }
@@ -34,14 +33,12 @@ public class PlayerTower : MonoBehaviour
 
     public void AddNewHumans(List<Human> collectedHumans)
     {
-        for (int i = 0; i < _humansInPlayerTower.Count; i++)
+        for (int i = 0; i < collectedHumans.Count; i++)
         {
-            _humansInPlayerTower.Insert(i, _humansInPlayerTower[i]);
+            _humansInPlayerTower.Insert(i, collectedHumans[i]);
             _humansInPlayerTower[i].transform.parent = transform;
         }
 
         SetHumanPosition();
-
-        _collectorCollider.transform.position = _humansInPlayerTower[0].transform.position;
     }
 }
