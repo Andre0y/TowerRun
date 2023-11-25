@@ -23,4 +23,14 @@ public class Tower : MonoBehaviour
         
         return givedHumans;
     }
+
+    public void Break()
+    {
+        for (int i = 0; i < _humans.Count; i++)
+        {
+            _humans[i].Bounce();
+        }
+
+        Destroy(gameObject);
+    }
 }

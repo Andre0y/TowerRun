@@ -21,7 +21,13 @@ public class HumanTransfer : MonoBehaviour
                 List<Human> collectedHumans = collectedTower.GiveHumans(collectedHuman);
 
                 _playerTower.AddNewHumans(collectedHumans);
+                collectedTower.Break();
             }
+        }
+
+        if (other.TryGetComponent(out Tower tower))
+        {
+            tower.Break();
         }
     }
 }
