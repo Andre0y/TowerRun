@@ -14,7 +14,7 @@ public class PlayerFollower : MonoBehaviour
 
     public void AddDistance(Human addedHuman)
     {
-        _offset.y += Mathf.Pow(addedHuman.FixationPoint.position.y, 2);
-        _offset.x -= Mathf.Pow(addedHuman.FixationPoint.position.y, 2) / 1.5f;
+        _offset.y += addedHuman.FixationPoint.position.y / 1.2f;
+        _offset.x -= addedHuman.FixationPoint.position.y / 4;
     }
 }

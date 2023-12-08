@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerTower : MonoBehaviour
 {
@@ -40,6 +41,23 @@ public class PlayerTower : MonoBehaviour
             
             _humansInPlayerTower.Insert(i, collectedHumans[i]);
             _humansInPlayerTower[i].transform.parent = transform;
+        }
+
+        SetHumanPosition();
+    }
+
+    public void DeleteHumans(int countOfDeletedHumans)
+    {
+        if (countOfDeletedHumans >= _humansInPlayerTower.Count)
+        {
+            SceneManager.LoadScene(0);
+        }
+        
+        for(int i = 0; i < countOfDeletedHumans; i++)
+        {
+            _humansInPlayerTower[i].transform.parent = null;
+            Destroy(_humansInPlayerTower[i].gameObject);
+            _humansInPlayerTower.RemoveAt(i);
         }
 
         SetHumanPosition();
